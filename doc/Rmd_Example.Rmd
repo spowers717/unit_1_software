@@ -1,0 +1,56 @@
+---
+title: "Rmd_Example"
+author: "MSCI 599"
+output: html_document
+---
+
+# Big heading
+## Medium heading
+### Small heading
+#### Tiny heading
+
+This is an example of an .Rmd file. We can define code chunks by using three grave accents, followed by curly brackets around r. A code chunk looks like this;
+
+```{r}
+x = c(1,2,3)
+y = c(2,4,6)
+```
+
+If we write code that produces output, such as this:
+
+```{r}
+plot(x,y)
+```
+
+The output will appear inline in the rendered document right after the code chunk. If you don’t want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include echo = FALSE in the code chunk instructions:
+
+```{r, echo=FALSE}
+plot(x,y)
+```
+
+There are plenty of other code chunk instructions you can inlcude in the curly braces to customize your `.Rmd` file. 
+
+***
+
+Bulleted lists:
+
+My family's fave pizza toppings:
+
+- pineapple
+- bacon
+
+***
+
+My pet's in order of how much I like them:
+
+1. Nana (dog)
+2. Wheezer (cat)
+3. Napoleon (jerkface)
+
+***
+
+I can italicize text like *this* or like _this_ and I can embolden text like **this** or like __this__
+
+***
+
+superscript^2^ and subscript~2~

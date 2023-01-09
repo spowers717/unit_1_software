@@ -1,0 +1,184 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width=6, fig.asp = 0.618, collapse=TRUE) 
+```
+
+### Unit 1: Getting Started
+#### Lesson 2: Introduction to RMarkdown
+
+***
+
+### What is RMarkdown?
+
+R Markdown allows you to create documents that serve as an organized record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis, and potentially validate or extend this work. You might choose to create an RMarkdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. RMarkdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook.
+
+RMarkdown uses Markdown syntax. Markdown is a very simple ‘markup’ language which provides methods for creating documents with headers, images, links etc. from plain text files, while keeping the original plain text file easy to read. You can convert Markdown documents to many other file types like .html or .pdf to display the headers, images etc..
+
+### Download RMarkdown
+
+To get RMarkdown working in RStudio, the first thing you need is the rmarkdown package, which you can get from CRAN by running the following commands in R or RStudio:
+
+```{r eval=FALSE}
+install.packages("rmarkdown")
+library(rmarkdown)
+```
+
+### Create an RMarkdown file
+
+To create an RMarkdown file, open RStudio and in the toolbar at the top of the screen, go to `File -> New File -> RMarkdown...`. From there you'll create an RMarkdown Document (which is selected by default on the left). You can edit the title and author fields, if you want, or leave them as is. You'll see those fields right at the top of your file and will be able to edit them whenever you want. You can also choose what type of file you want the RMarkdown file to write to. Let's keep it as .html for now, but .pdf can be useful too. You can also change this whenver you want after the file is created. Press `OK` and you'll see your fresh new .Rmd file. 
+
+
+You can test the .Rmd file by compiling it to .html. To compile your .Rmd file into a .html document, you should press the Knit button in the taskbar:
+
+![](doc/Knit_HTML_Screenshot.jpg) 
+
+By default, RStudio opens a separate preview window to display the output of your .Rmd file, or it will open the preview in your Viewer pane in RStudio (bottom right). When the preview appears, an .html file is also saved to the same folder where you saved your .Rmd file.
+
+### The basics
+
+`.Rmd` files contain three important types of content:
+
+1.  An (optional) __YAML header__ surrounded by `---`s.
+1.  __Chunks__ of R code surrounded by ```` ``` ````.
+1.  Text mixed with simple text formatting like `# heading` and `_italics_`.
+
+There are special characters you can use or parameters you can set to customize each of these three types of content. We'll learn a few of the basics here so that you can create `.Rmd` files to turn in for your homework in this class.
+
+### The YAML header
+
+At the top of any RMarkdown script is a YAML header section enclosed by ---. You can control many “whole document” settings by tweaking the parameters of the YAML header. YAML originally stood for "Yet Another Markup Language", but programmers can be goofballs, and now YAML officially stands for "YAML Ain't Markup Language". Don't get hung up on it. YAML is a stand alone language, similar to JSON, that is human-readable. We use the YAML header to provide a handful of key-value pairs for our .Rmd file. 
+
+By default the YAML header includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, but we aren't going to dive deep into RMarkdown functionality for this class. Rules in the header section will alter the whole document. 
+
+Your YAML header will look something like this at the top of your new .Rmd script:
+
+```
+---
+title: "Climate Module HW 1"
+author: John Doe
+date: 22/Oct/2020
+output: html_document
+---
+```
+
+In the YAML header example above, the `.Rmd` file is set to create an .html document when it is knit. If, for example you would prefer a .pdf output document, you can change the output parameter in your YAML header to `pdf_document`. Note: To knit a pdf document, you need to have latex installed on your computer. If you haven't already, go ahead and download / install latex here:
+
+https://www.latex-project.org/get/
+
+### Code Chunks
+
+Below the YAML header is the space where you will write your code, accompanying explanation and any outputs. Code that is included in your .Rmd document should be enclosed by three backwards apostrophes ``` (grave accents!). These are known as code chunks. Inside the curly brackets is a space where you can customize options for that code chunk. An example of an .Rmd file looks like this:
+
+```{r echo = FALSE, comment = ""}
+cat(htmltools::includeText("doc/Rmd_Example.Rmd"))
+```
+
+You can run each code chunk while you are in your `.Rmd` file by clicking the Run icon (it looks like a play button at the top of the chunk). RStudio executes the code and displays the results inline with the code. 
+
+Chunk output can be customised with __options__, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
+
+The most important set of options controls if your code block is executed and what results are inserted in the finished report:
+  
+*   `eval = FALSE` prevents code from being evaluated. (And obviously if the
+    code is not run, no results will be generated). This is useful for 
+    displaying example code, or for disabling a large block of code without 
+    commenting each line.
+
+*   `include = FALSE` runs the code, but doesn't show the code or results 
+    in the final document. Use this for setup code that you don't want
+    cluttering your report.
+
+*   `echo = FALSE` prevents code, but not the results from appearing in the 
+    finished file. Use this when writing reports aimed at people who don't
+    want to see the underlying R code.
+    
+*   `message = FALSE` or `warning = FALSE` prevents messages or warnings 
+    from appearing in the finished file.
+
+*   `results = 'hide'` hides printed output; `fig.show = 'hide'` hides
+    plots.
+
+*   `error = TRUE` causes the render to continue even if code returns an error.
+    This is rarely something you'll want to include in the final version
+    of your report, but can be very useful if you need to debug exactly
+    what is going on inside your `.Rmd`. It's also useful if you're teaching R
+    and want to deliberately include an error. The default, `error = FALSE` causes 
+    knitting to fail if there is a single error in the document.
+    
+The following table summarises which types of output each option suppresses:
+
+Option             | Run code | Show code | Output | Plots | Messages | Warnings 
+-------------------|----------|-----------|--------|-------|----------|---------
+`eval = FALSE`     | -        |           | -      | -     | -        | -
+`include = FALSE`  |          | -         | -      | -     | -        | -
+`echo = FALSE`     |          | -         |        |       |          |
+`results = "hide"` |          |           | -      |       |          | 
+`fig.show = "hide"`|          |           |        | -     |          |
+`message = FALSE`  |          |           |        |       | -        |
+`warning = FALSE`  |          |           |        |       |          | -
+
+
+### Inline code
+
+It's customary to refer to code directly inline using single grave accents so that the reader knows you are referring to a variable, command, etc. Then you can embed R code directly into the text, using single grave accents surrounding the letter `r` and the inline code. This can be very useful if you mention properties of your data in the text. When the report is knit, the results of these computations are inserted directly into the text.
+
+For example:
+
+```{r}
+teeth_lost_per_kid = c(16, 1, 0) # Evee, Hazel, Nell
+```
+
+Our important data is stored in the variable `teeth_lost_per_kid` and I can use that data to calculate the total number of times I've played tooth fairy, which is: `r sum(teeth_lost_per_kid)`. Hooray!
+
+### Embedding images and links
+
+You can embed a link by surrounding it with the less than and greater than carrots `<` and `>` like this: `<https://sc.edu>`
+
+<https://sc.edu/>
+
+You can embed images that are stored on your hard drive by using this syntax: `![optional caption text](path/to/img.png)` where the path to image is a path relative to wherever your .Rmd file is stored. For example, the line:
+
+`![](doc/PhD_coding.png)`
+
+gives you:
+
+![](doc/PhD_coding.png)
+
+And here's the comic again but with a caption included, and the size reduced by 50%:
+
+`![Have we strayed too far from our animal selves?](doc/PhD_coding.png){width=50%}`
+
+![Have we strayed too far from our animal selves?](doc/PhD_coding.png){width=50%}
+
+
+### More with RMarkdown
+
+The best way to learn the formatting for RMarkdown is simply to practice. It will take a few days, but soon the format will become second nature, and you won't need to think about it If you forget, you can get to a handy reference sheet with *Help > Markdown Quick Reference*. 
+
+There is SO much more that you can do when building RMarkdown files, including formatting tables, embedding citations, automating report generation etc. People use RMarkdown to write textbooks, such as the Hadley Wickham's textbook suggested for this class: <https://r4ds.had.co.nz/>. You can go to this textbook and view the source code behind the book to see all of the `.Rmd` files used to build the book. People also use RMarkdown to write theses and dissertations, reports, and so on. There are resources listed below that can help you learn some of the extended functionality. However, for this course, the basic commands for text formatting, inserting code and output and rendering .html or .pdf documents is sufficient.
+
+Note: I am not suggesting you should write your dissertation in RMarkdown. You should write your dissertation in whatever software your advisor is comfortable with (probably Word). I scaled a huge mountain by learning Latex and writing my first chapter of my dissertation with gorgeous embedded equations, and my advisor said "What do you expect me to do with this? Convert it to Word." We are using RMarkdown in this class to expose you to a popular style of programming notebook (like Jupyter) that has benefits for creating reproducible analyses and contributing to open data science.
+
+You will write you homework code and prose explanations in an .Rmd file because it is a great way to combine visible code, code output and text.
+
+### Exercise 2.1
+
+Write an example RMarkdown file and knit it into an HTML document and a PDF document.
+
+### For more information on RMarkdown
+
+R Markdown: The Definitive Guide
+Yihui Xie, J. J. Allaire, Garrett Grolemund
+https://bookdown.org/yihui/rmarkdown/
+
+R Markdown Cheat Sheet
+https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+https://ourcodingclub.github.io/tutorials/rmarkdown/
+
+
