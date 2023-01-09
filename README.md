@@ -1,4 +1,4 @@
-### MSCI 758 Marine Data Science with R
+### MSCI 709 Marine Data Science with R
 ### Unit 1: Getting Started
 
 #### Course GitHub site: https://github.com/MSCI-709
