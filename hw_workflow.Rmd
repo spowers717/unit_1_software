@@ -1,0 +1,31 @@
+---
+output:
+  html_document: default
+---
+
+### Homework Workflow
+
+
+- Put your name, GitHub username and email in my spreadsheet: <https://docs.google.com/spreadsheets/d/1fa4HaOdLfSOltL5x5EXTw6aDbWHMUG1wqUY9sLUOxk0/edit?usp=sharing>
+    - this allows me to add you to our class roster
+- Follow the link to your homework assignment
+    - the links are sent via email and are also on the README file for each unit repository
+- Accept the assignment
+    - link your GitHub account to your username listed in the roster (1st assignment only)
+-	Follow the link to your new, private homework repository. 
+    - You may need to refresh the page to see your new repository.
+    -	Once your private homework repo is created, you can access it from our classroom GitHub page <https://github.com/MSCI-709>
+-	Clone the repository to your local computer 
+    -	Click `Code` and copy the repo link
+    -	Open RStudio and create a new project with Git version control using the repo link
+-	Do the homework assignment
+    -	Add your text and code to answer the questions at the bottom of the HW file (e.g. `hw_1_software_practice.Rmd`)
+-	Use the `Git` pane in RStudio to push your work out to GitHub periodically 
+    -	stage the files you want added to the repo (please include the .Rproj file)
+    -	commit (don’t forget the commit message!)
+    -	pull (to check for updates already up on GitHub)
+    -	push out your new files and edits to the online repo 
+    -	Note: You can push out edits as often as you want - I won't look at or consider your homework "final" until after the due date.
+
+
+
