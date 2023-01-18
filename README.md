@@ -46,9 +46,11 @@ print(), c(), typeof(), length(), seq(), rep(), matrix(), class(), array(), list
 
 ### HW 1: software practice  
 
-Invitation link: TBD
+Assigned: 1/19/23
 
-DUE: 1/31/2023
+Invitation link: https://classroom.github.com/a/3Cy917gP
+
+DUE: 1/26/2023
 
 ***
 
